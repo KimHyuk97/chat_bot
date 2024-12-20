@@ -54,7 +54,7 @@ def embed_file(file):
     docs = loader.load()
 
     # 단계 2: 문서 분할(Split Documents)
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=50)
     split_documents = text_splitter.split_documents(docs)
 
     # 단계 3: 임베딩(Embedding) 생성
@@ -77,7 +77,7 @@ def create_chain(retriever, model_name="gpt-4o-mini"):
     prompt = load_prompt("prompts/pdf-rag.yaml")
 
     # 언어모델(LLM) 생성
-    llm = ChatOpenAI(model_name=model_name, temperature=0)
+    llm = ChatOpenAI(model_name=model_name, temperature=0.1)
 
     # 체인(Chain) 생성
     chain = (
